@@ -5,25 +5,12 @@ import type { ScreenType } from "../hooks/useBirthdayJourney";
 interface BackgroundEffectsProps {
   soundEnabled: boolean;
   onToggleSound: () => void;
-  currentScreen: ScreenType;
+  currentScreen?: ScreenType;
 }
-
-const SCREENS: { id: ScreenType; label: string }[] = [
-  { id: "PIN_ENTRY", label: "Secret Code" },
-  { id: "EXCITEMENT", label: "Excited?" },
-  { id: "GIFTS", label: "Gifts" },
-  { id: "CAKE", label: "Cake & Wish" },
-  { id: "CELEBRATION", label: "Celebrate" },
-  { id: "LETTER", label: "Letter" },
-  { id: "BOUQUET", label: "Flowers" },
-  { id: "SLIDESHOW", label: "Memories" },
-  { id: "FINAL", label: "Wish" },
-];
 
 export const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({
   soundEnabled,
   onToggleSound,
-  currentScreen,
 }) => {
   // Generate stable floating hearts
   const floatingElements = useMemo(() => {
@@ -39,8 +26,6 @@ export const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({
       targetRotate: `${((i * 19) % 60) - 30}deg`,
     }));
   }, []);
-
-  const currentIndex = SCREENS.findIndex((s) => s.id === currentScreen);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden z-0 select-none">
@@ -84,47 +69,20 @@ export const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({
         </span>
       ))}
 
-      {/* Ultra-compact Top Header Bar */}
-      <div className="absolute top-1.5 left-0 right-0 px-2 sm:px-4 flex items-center justify-between pointer-events-auto z-30">
-        {/* Subtle Brand pill */}
-        <div className="glass-card-sm px-2 py-0.5 flex items-center gap-1 text-[10px] font-semibold text-[#87566C] shadow-xs">
-          <Sparkles className="w-2.5 h-2.5 text-[#FF5C8A] animate-spin" style={{ animationDuration: "6s" }} />
+      {/* Neatly Positioned Top Header Bar */}
+      <div className="absolute top-3 sm:top-4 left-0 right-0 w-full max-w-sm sm:max-w-md mx-auto px-4 flex items-center justify-between pointer-events-auto z-30">
+        {/* For Renu Brand Pill */}
+        <div className="glass-card-sm px-3 py-1 flex items-center gap-1.5 text-[11px] font-semibold text-[#87566C] shadow-xs">
+          <Sparkles className="w-3 h-3 text-[#FF5C8A] animate-spin" style={{ animationDuration: "6s" }} />
           <span className="font-heading tracking-wide">For Renu 💗</span>
         </div>
 
-        {/* Step indicator beads for desktop/tablet */}
-        <div className="hidden sm:flex items-center gap-1 glass-card-sm px-2 py-0.5">
-          {SCREENS.map((step, idx) => {
-            const isCompleted = idx < currentIndex;
-            const isCurrent = idx === currentIndex;
-            return (
-              <div
-                key={step.id}
-                title={step.label}
-                className={`transition-all duration-300 rounded-full ${isCurrent
-                  ? "w-4 h-1.5 bg-gradient-to-r from-[#FF5C8A] to-[#F43F78] shadow-xs"
-                  : isCompleted
-                    ? "w-1.5 h-1.5 bg-[#FFB6C8]"
-                    : "w-1.5 h-1.5 bg-white/70"
-                  }`}
-                style={{
-                  background: isCurrent
-                    ? "linear-gradient(135deg, #FF5C8A, #F43F78)"
-                    : isCompleted
-                      ? "#FFB6C8"
-                      : "rgba(255, 255, 255, 0.7)",
-                }}
-              />
-            );
-          })}
-        </div>
-
-        {/* Sound toggle button */}
+        {/* Sound Toggle Button */}
         <button
           onClick={onToggleSound}
           type="button"
           aria-label={soundEnabled ? "Mute audio" : "Enable audio"}
-          className="glass-card-sm px-2 py-0.5 flex items-center gap-1 text-[10px] font-medium text-[#4A2338] hover:text-[#F43F78] transition-transform active:scale-95 cursor-pointer shadow-xs"
+          className="glass-card-sm px-3 py-1 flex items-center gap-1.5 text-[11px] font-semibold text-[#4A2338] hover:text-[#F43F78] transition-transform active:scale-95 cursor-pointer shadow-xs"
           style={{
             background: "rgba(255, 255, 255, 0.9)",
             border: "1px solid rgba(255, 182, 200, 0.5)",
@@ -133,12 +91,12 @@ export const BackgroundEffects: React.FC<BackgroundEffectsProps> = ({
           {soundEnabled ? (
             <>
               <Volume2 className="w-3 h-3 text-[#FF5C8A] animate-pulse" />
-              <span className="text-[10px] font-semibold">Sound ON</span>
+              <span>Sound ON</span>
             </>
           ) : (
             <>
               <VolumeX className="w-3 h-3 text-gray-400" />
-              <span className="text-[10px] font-semibold text-gray-500">Muted</span>
+              <span className="text-gray-500">Muted</span>
             </>
           )}
         </button>

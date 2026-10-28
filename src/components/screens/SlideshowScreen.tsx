@@ -89,7 +89,7 @@ export const SlideshowScreen: React.FC<SlideshowScreenProps> = ({
                 /* Fallback Artistic Memory Card */
                 <div className="p-3 flex flex-col items-center text-center">
                   <div className="w-12 h-12 rounded-full bg-[#FFE4EC] flex items-center justify-center text-2xl mb-1 shadow-xs border border-pink-200">
-                    {currentPhoto.badgeEmoji || "🌸"}
+                    {currentPhoto.badgeEmoji || " "}
                   </div>
                   <span className="font-heading text-xs font-bold text-[#F43F78] mb-0.5">
                     Precious Moment #{currentIndex + 1}
@@ -139,11 +139,10 @@ export const SlideshowScreen: React.FC<SlideshowScreenProps> = ({
                     onIndexChange(idx);
                   }}
                   aria-label={`Go to slide ${idx + 1}`}
-                  className={`h-1.5 rounded-full transition-all cursor-pointer ${
-                    idx === currentIndex
+                  className={`h-1.5 rounded-full transition-all cursor-pointer ${idx === currentIndex
                       ? "w-4 bg-[#F43F78]"
                       : "w-1.5 bg-rose-200 hover:bg-rose-300"
-                  }`}
+                    }`}
                 />
               ))}
             </div>

@@ -76,7 +76,13 @@ This tracking document maintains continuous progress and state across the redesi
 - [x] Added `playHappyBirthdayMelody(continuous: boolean = false)` looping mode with seamless note interval scheduling
 - [x] Added automated melody termination when clicking "Celebrate", muting sound, or unmounting screen
 
-### Step 10: Testing & Verification
+### Step 10: Top Header Bar Perfect Positioning (`BackgroundEffects.tsx` & `App.tsx`)
+- [x] Repositioned `"For Renu 💗"` and `"Sound ON"` with balanced breathing room (`top-3 sm:top-4`)
+- [x] Centered the top bar to match the exact card width (`w-full max-w-sm sm:max-w-md mx-auto px-4`) so both pills have equal space around them and equal margins on the sides
+- [x] Removed the squished middle step indicator line that was cluttering the space between the two pills
+- [x] Balanced padding, font sizes (`text-[11px]`), and icons (`w-3 h-3`) equally across both pills
+
+### Step 11: Testing & Verification
 - [x] TypeScript compilation: `npx tsc --noEmit` verified with 0 errors
-- [x] Vite production build: `npm run build` verified with 0 errors (built in 1.49s)
+- [x] Vite production build: `npm run build` verified with 0 errors
 - [x] Dev server active on local workspace

@@ -15,7 +15,7 @@ export const App: React.FC = () => {
   const journey = useBirthdayJourney();
 
   return (
-    <main className="relative min-h-screen w-full flex flex-col justify-center items-center pt-10 pb-2 px-2 sm:px-4 selection:bg-[#FFB6C8] selection:text-[#4A2338]">
+    <main className="relative min-h-screen w-full flex flex-col justify-center items-center pt-12 pb-2 px-2 sm:px-4 selection:bg-[#FFB6C8] selection:text-[#4A2338]">
       {/* Background Ambience: Floating hearts, sparkles, glowing orbs, top audio bar */}
       <BackgroundEffects
         soundEnabled={journey.soundEnabled}
